@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Welcome Page</title>
+            <!-- Tailwind CSS for basic styling, as per instructions -->
+            <script src="https://cdn.tailwindcss.com"></script>
+            <!-- Google Font - Inter, as per instructions -->
+            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+            <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column; /* Arrange content vertically */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Full viewport height */
+            background-color: #e0f2fe; /* Light blue background */
+            margin: 0;
+            overflow: hidden; /* Hide anything that flies off screen */
+            position: relative; /* For absolute positioning of the balloon */
+        }
+
+        .welcome-text {
+            font-size: 4rem; /* Large text */
+            font-weight: 700;
+            color: #1a202c; /* Dark text color */
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        p {
+            font-size: 1.5rem; /* Large text */
+        }
+
+        .balloon-emoji {
+            font-size: 5rem; /* Large emoji size */
+            position: absolute;
+            bottom: -100px; /* Start below the viewport */
+            left: 50%;
+            transform: translateX(-50%); /* Center horizontally */
+            animation: floatUp 8s ease-out forwards; /* Animation: 8s duration, ease-out, stays at end */
+            opacity: 0; /* Start invisible */
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateX(-50%) translateY(0); /* Start at bottom, centered */
+                opacity: 0;
+            }
+            10% {
+                opacity: 1; /* Fade in quickly */
+            }
+            90% {
+                opacity: 1; /* Stay visible for most of the animation */
+            }
+            100% {
+                transform: translateX(-50%) translateY(-150vh); /* Fly up and off screen */
+                opacity: 0; /* Fade out at the end */
+            }
+        }
+
+        /* Optional: Adding a small bounce for dynamic feel */
+        @keyframes textBounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        .welcome-text {
+            animation: textBounce 2s ease-in-out; /* Apply bounce to text */
+        }
+    </style>
+    </head>
+
+    <body>
+        <div class="welcome-text">Welcome <%= visitorName %>!</div>
+        <p>The name is updated in real-time when a visitor signs in via Envoy.</p>
+        <!-- The Balloon Emoji -->
+        <span class="balloon-emoji" role="img" aria-label="Balloon">🎈</span>
+    </body>
+</html>
