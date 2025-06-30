@@ -27,8 +27,7 @@ Enough with talking. Let's start building!
 First, create a new folder called 'welcome'. Inside, you need 2 files ('package.json' and 'server.js') and a folder called 'views'. Inside that folder, you need a file called 'index.ejs'. To save you some time, copy the content of those 3 files from [this GitHub repository](https://github.com/oren/my-plugin/tree/main/welcome).
 
 Below is what you should end up with:
-```
-.
+```bash
 ├── package.json
 ├── server.js
 └── views
@@ -36,14 +35,13 @@ Below is what you should end up with:
 ```
 
 Install the NPM dependencies
-```
+```bash
 cd welcome
 npm install
 ```
 
 Run the app
-
-```
+```bash
 node server.js
 ```
 
@@ -53,7 +51,7 @@ Open the broswer at http://localhost:8000 and verify that you see the welcome pa
 Amazing! Now, let's take a brief look at the important parts of our app. If you just want to complete the guide without understanding how things work, feel free to skip to Part 2.
 
 First, let's look at the dependencies we have in 'package.json'. The important one is the Envoy Node.js SDK. It provides us with a middleware that is needed for integrating our app with Envoy.
-```
+```javascript
   "dependencies": {
     "ejs": "^3.1.10",
     "express": "^5.1.0",
@@ -62,7 +60,7 @@ First, let's look at the dependencies we have in 'package.json'. The important o
 ```
 
 Let's take a look at our 'server.js' file. This file has the endpoint that will receive the request from Envoy (the webhook). This will be called after we register and set up our app on the Envoy platform (Step 2 of this guide). Whenever a visitor signs in, this endpoint will be called, and our app sets the `latestVisitorName`. Every 5 seconds, the HTML will re-render itself with the new visitor.
-```
+```javascript
 app.post('/visitor-sign-in', async (req, res) => {
   const envoy = req.envoy; // our middleware adds an "envoy" object to req.
   const job = envoy.job;
@@ -81,12 +79,12 @@ app.post('/visitor-sign-in', async (req, res) => {
 ## Step 2: Register the App with Envoy
 
 Before you continue to Step 2, we need to expose our app to the internet. Install [`ngrok`](https://ngrok.com/), and in another terminal, run this command:
-```
+```bash
 ngrok http http://localhost:8000
 ```
 
 You will see output like this:
-```
+```bash
 https://c6b6-2601-645-8800-7180-581e-114a-6179-b578.ngrok-free.app -> http://localhost:8000
 ```
 
@@ -118,7 +116,7 @@ Under 'Setup Steps' do the following:
 * Check the 'Required'
 
 Copy the Client ID and the Client Secret. Your app needs both as environment variables. There are multiple ways to add them to the app; I add them to my '~/.bashrc file':
-```
+```bash
 export ENVOY_CLIENT_SECRET="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 export ENVOY_CLIENT_ID="xxxxxxxx-xxxxxxx-xxxxx-xxxxxxx"
 ```
