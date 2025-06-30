@@ -20,7 +20,7 @@ Before building the app, let's discuss the flow between Envoy and our app, and t
 
 When a visitor signs in using Envoy, Envoy uses a Webhook (HTTP POST) to notify our app about the event. Our app extracts the name of the visitor and updates the UI with that name. The UI refreshes itself every 5 seconds. Instead of refreshing the UI, we could have used WebSockets, but this would complicate the code, and we chose the simplest and most straightforward solution. The UI also displays a balloon that flies up. We use CSS animations instead of an external JavaScript library because we wanted to keep things simple.
 
-For the deployment option, we chose to keep the app on your machine. We are using a tool called `ngrok` for this. In the real world, you should deploy it on a cloud provider such as AWS or Heroku.
+For the deployment option, we chose to keep the app on your machine. We are using a tool called [`ngrok`](https://ngrok.com/) for this. In the real world, you should deploy it on a cloud provider such as AWS or Heroku.
 
 Enough with talking. Let's start building!
 
